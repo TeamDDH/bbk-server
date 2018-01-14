@@ -1,0 +1,21 @@
+# Trash
+.DS_Store
+*.pyc
+
+# Deployer
+fabfile.py
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Temp
+algorithm/
+spider/
+db/
+doc/
+venv/
