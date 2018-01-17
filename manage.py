@@ -14,18 +14,18 @@ import os
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager, Server, Shell, prompt_bool
 
-from server import create_app
+from server import create_server
 from server.exts import db
 from server.models import User, Article, Topic, Comment, Subscription
 
-app = create_app(os.getenv('BBK_SERVER_ENV') or 'development')
-manager = Manager(app)
-migrate = Migrate(app, db)
+server = create_server(os.getenv('BBK_SERVER_ENV') or 'development')
+manager = Manager(server)
+migrate = Migrate(server, db)
 
 
 def make_shell_context():
     """Make references in shell interactive context."""
-    return dict(app=app,
+    return dict(server=server,
                 db=db,
                 User=User,
                 Article=Article,

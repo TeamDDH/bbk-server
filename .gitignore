@@ -13,9 +13,9 @@ fabfile.py
 *.njsproj
 *.sln
 
-# Temp
-algorithm/
-spider/
-db/
-doc/
+# Virtual environment
 venv/
+
+# Database and local storage
+db/
+result/

@@ -14,9 +14,9 @@ import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 #: database uri
-DEV_DB_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'db/data-dev.sqlite')
-TEST_DB_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'db/data-test.sqlite')
-PROD_DB_URI = None
+DEV_DB_URI = 'mysql://root:sige1995@localhost:3306/bbkserver'
+TEST_DB_URI = None
+PROD_DB_URI = None  #: maybe I am not going to use prod mode on my mac...
 
 #: secret key
 DEV_SECRET_KEY = 'secretkeyfordev'
@@ -25,7 +25,6 @@ PROD_SECRET_KEY = os.getenv('BBK_SECRET_KEY') or None
 
 class Config(object):
     #: security & authentication
-    WTF_CSRF_ENABLED = True
     AUTH_SECRET_KEY = PROD_SECRET_KEY or DEV_SECRET_KEY
     AUTH_TOKEN_EXPIRE = 3600 * 24 * 30 * 6  #: half a year
 
