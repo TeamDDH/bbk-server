@@ -46,7 +46,7 @@ class TopicApi(Resource):
             topic_pagination = get_topics_pagination(page_num)
             return marshal(topic_pagination, topic_pagination_field)
 
-        abort(400, message='Bar parameters.')
+        abort(400, message='Bad parameters.')
 
     @superuser_required
     def post(self):
