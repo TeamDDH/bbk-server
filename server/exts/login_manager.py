@@ -36,7 +36,7 @@ class AnonymousUserMixin(object):
         return '<AnonymousUser>'
 
 
-class Manager(object):
+class LoginManager(object):
     def __init__(self, app=None):
         if app:
             self.init_app(app)

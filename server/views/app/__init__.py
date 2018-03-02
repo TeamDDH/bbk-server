@@ -17,4 +17,4 @@ app = Blueprint('app', __name__)
 
 @app.route('/')
 def index():
-    return 'Hello, world!'
+    return 'Hello, BBK!'

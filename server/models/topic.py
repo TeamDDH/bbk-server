@@ -7,7 +7,7 @@
     :license: MIT, see LICENSE for more details.
 """
 
-from datetime import datetime
+from ..util.datetime import get_current_timestamp
 from ..exts import db
 
 
@@ -16,18 +16,21 @@ class Topic(db.Model):
 
     _id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(256), index=True)
-    created_datetime = db.Column(db.DateTime)
-    updated_datetime = db.Column(db.DateTime)
+    desc = db.Column(db.String(256))
+    created_datetime = db.Column(db.BigInteger)  #: all datetime is timestamp
+    updated_datetime = db.Column(db.BigInteger)
 
     #: relationships to other models
-    articles = db.relationship('Article', backref='topic', lazy='dynamic')
+    articles = db.relationship('Article',
+                               backref='topic',
+                               lazy='dynamic')
     subscribers = db.relationship('Subscription',
                                   back_populates='topic')
 
     def __init__(self, title):
         self.title = title
-        self.created_datetime = datetime.utcnow()
-        self.updated_datetime = datetime.utcnow()
+        self.created_datetime = get_current_timestamp()
+        self.updated_datetime = get_current_timestamp()
 
     #: create methods
     @classmethod

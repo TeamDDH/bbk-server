@@ -7,7 +7,7 @@
     :license: MIT, see LICENSE for more details.
 """
 
-from datetime import datetime
+from ..util.datetime import get_current_timestamp
 from ..exts import db
 
 
@@ -16,7 +16,7 @@ class Comment(db.Model):
 
     _id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text)
-    created_datetime = db.Column(db.DateTime)
+    created_datetime = db.Column(db.BigInteger)
     is_sub_comment = db.Column(db.Boolean)
     approve_count = db.Column(db.Integer)
     disapprove_count = db.Column(db.Integer)
@@ -51,7 +51,7 @@ class Comment(db.Model):
         self.content = content
         self.article_id = article_id
         self.is_sub_comment = is_sub_comment
-        self.created_datetime = datetime.utcnow()
+        self.created_datetime = get_current_timestamp()
         self.user_id = user_id
         self.approve_count = 0
         self.disapprove_count = 0

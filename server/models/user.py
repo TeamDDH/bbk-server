@@ -7,7 +7,6 @@
     :license: MIT, see LICENSE for more details.
 """
 
-from datetime import datetime
 from flask import current_app
 from itsdangerous import (TimedJSONWebSignatureSerializer as TSerializer,
                           BadSignature,
@@ -15,6 +14,7 @@ from itsdangerous import (TimedJSONWebSignatureSerializer as TSerializer,
 from werkzeug.security import generate_password_hash, check_password_hash
 from server.exts import db
 from .subscription import Subscription
+from ..util.datetime import get_current_timestamp
 
 
 class User(db.Model):
@@ -32,8 +32,8 @@ class User(db.Model):
     self_introduction = db.Column(db.Text)
     first_name = db.Column(db.String(64))
     last_name = db.Column(db.String(64))
-    register_datetime = db.Column(db.DateTime)
-    last_login_datetime = db.Column(db.DateTime)
+    register_datetime = db.Column(db.BigInteger)
+    last_login_datetime = db.Column(db.BigInteger)
     is_confirmed = db.Column(db.Boolean, default=False)
     is_superuser = db.Column(db.Boolean, default=False)
 
@@ -91,8 +91,8 @@ class User(db.Model):
         self.phone_number = phone_number
         self.username = username
         self.password = password
-        self.register_time = datetime.utcnow()
-        self.last_login_time = datetime.utcnow()
+        self.register_time = get_current_timestamp()
+        self.last_login_time = get_current_timestamp()
         self.is_confirmed = False
         self.is_superuser = is_superuser
         self.nickname = nickname

@@ -7,8 +7,7 @@
     :license: MIT, see LICENSE for more details.
 """
 
-from datetime import datetime
-
+from ..util.datetime import get_current_timestamp
 from ..exts import db
 
 
@@ -17,12 +16,12 @@ class Article(db.Model):
 
     _id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(256), index=True)
-    uri = db.Column(db.String(256))  #: raw uri to source page
-    content = db.Column(db.Text, nullable=True)  #: article content
+    uri = db.Column(db.String(256))
+    content = db.Column(db.Text, nullable=True)
     author = db.Column(db.String(64), nullable=True)
-    source = db.Column(db.String(128), nullable=True)  #: name of the source
-    created_datetime = db.Column(db.DateTime)
-    updated_datetime = db.Column(db.DateTime)
+    source = db.Column(db.String(128), nullable=True)
+    created_datetime = db.Column(db.BigInteger)
+    updated_datetime = db.Column(db.BigInteger)
 
     #: relationships to other models
     topic_id = db.Column(db.Integer, db.ForeignKey('topics._id'))
@@ -35,8 +34,8 @@ class Article(db.Model):
         self.content = content
         self.author = author
         self.source = source
-        self.created_datetime = datetime.utcnow()
-        self.updated_datetime = datetime.utcnow()
+        self.created_datetime = get_current_timestamp()
+        self.updated_datetime = get_current_timestamp()
         self.topic_id = topic_id
 
     #: create methods

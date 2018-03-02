@@ -14,7 +14,7 @@ import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 #: database uri
-DEV_DB_URI = 'mysql://root:sige1995@localhost:3306/bbkserver'
+DEV_DB_URI = 'mysql+pymysql://root:sige1995@localhost:3306/bbkserver'
 TEST_DB_URI = None
 PROD_DB_URI = None  #: maybe I am not going to use prod mode on my mac...
 

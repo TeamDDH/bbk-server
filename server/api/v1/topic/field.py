@@ -11,7 +11,10 @@ from flask_restful import fields
 
 topic_object_field = {
     '_id': fields.Integer,
-    'title': fields.String
+    'title': fields.String,
+    'created_datetime': fields.Integer,
+    'updated_datetime': fields.Integer,
+    'desc': fields.String
 }
 
 topic_list_field = {

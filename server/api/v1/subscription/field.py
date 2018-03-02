@@ -12,5 +12,5 @@ from flask_restful import fields
 subscription_object_field = {
     'topic_id': fields.Integer,
     'user_id': fields.Integer,
-    'created_datetime': fields.DateTime
+    'created_datetime': fields.Integer
 }

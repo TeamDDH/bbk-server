@@ -40,17 +40,12 @@ manager.add_command('db', MigrateCommand)
 manager.add_command('server', Server)
 
 
+#: register my commands
 @manager.command
-def create_db():
-    if prompt_bool('[WARNING] This will initialize the database. '
-                   'Are you sure there is no database now?'):
-        try:
-            db.create_all()
-            print '[INFO] Database created.'
-        except IOError:
-            print '[ERROR] Failed! Maybe you have initialized the database.'
-    else:
-        print '[INFO] We are not going to create database.'
+def fake():
+    for i in range(1, 10):
+        title = 'Fake Topic # %d' % i
+        Topic.create_topic(title=title)
 
 
 if __name__ == '__main__':

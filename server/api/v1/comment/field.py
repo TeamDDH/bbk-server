@@ -19,7 +19,7 @@ nested_user_object_field = {
 sub_comment_object_field = {
     '_id': fields.Integer,
     'content': fields.String,
-    'created_datetime': fields.DateTime,
+    'created_datetime': fields.Integer,
     'approve_count': fields.Integer,
     'disapprove_count': fields.Integer,
     'uploader': fields.Nested(nested_user_object_field)
@@ -28,7 +28,7 @@ sub_comment_object_field = {
 comment_object_field = {
     '_id': fields.Integer,
     'content': fields.String,
-    'created_datetime': fields.DateTime,
+    'created_datetime': fields.Integer,
     'approve_count': fields.Integer,
     'disapprove_count': fields.Integer,
     'uploader': fields.Nested(nested_user_object_field),

@@ -6,8 +6,8 @@
 fabfile.py
 
 # Editor directories and files
-.idea
-.vscode
+.idea/
+.vscode/
 *.suo
 *.ntvs*
 *.njsproj
@@ -15,7 +15,9 @@ fabfile.py
 
 # Virtual environment
 venv/
+env/
 
 # Database and local storage
 db/
 result/
+migrations/
