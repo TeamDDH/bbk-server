@@ -5,7 +5,7 @@
 
     This module provides a factory function to create application.
 
-    :copyright: (c) 2017 by Wendell Hu.
+    :copyright: (c) 2017-18 by Wendell Hu.
     :license: MIT, see LICENSE for more details.
 """
 
@@ -30,8 +30,8 @@ def create_server(config_name):
     #: initialize extensions
     db.init_app(server)
 
-    #: self-writen plugins should be loaded after third-party plugins are loaded
-    #: to avoid circle import
+    #: self-writen plugins should be loaded after third-party plugins are
+    #: loaded to avoid circle import
     login_manager = LoginManager(app=server)
 
     return server

@@ -3,7 +3,7 @@
     pipelines
     ~~~~~~~~~
 
-    :copyright: (c) 2017 by Wendell Hu.
+    :copyright: (c) 2017-18 by Wendell Hu.
     :license: MIT, see LICENSE for more details.
 """
 
@@ -13,6 +13,7 @@ from .db import session_generator, Article
 
 class ArticlePipeline(object):
     """Persist article items into database."""
+
     def __init__(self):
         self.session_generator = session_generator
 

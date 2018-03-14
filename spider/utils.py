@@ -3,13 +3,14 @@
     utils
     ~~~~~
 
-    :copyright: (c) 2017 by Wendell Hu.
+    :copyright: (c) 2017-18 by Wendell Hu.
     :license: MIT, see LICENSE for more details.
 """
 
 import redis
 
 from .config import SPIDER_REDIS_CONFIG
+
 
 class DuplicateChecker(object):
     def __init__(self):

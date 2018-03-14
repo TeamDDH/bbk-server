@@ -3,12 +3,9 @@
     spiders
     ~~~~~~~
 
-    Portals:
-
-    - Tencent Portal: www.qq.com
-    - Sina Portal: www.sina.com
-
-    :copyright: (c) 2017 by Wendell Hu.
+    :copyright: (c) 2017-18 by Wendell Hu.
     :license: MIT, see LICENSE for more details.
 """
 
+from sina_spider import SinaSpider
+from tencent_spider import TencentSpider

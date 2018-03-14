@@ -3,7 +3,7 @@
     api.v1
     ~~~~~~
 
-    :copyright: (c) 2017 by Wendell Hu.
+    :copyright: (c) 2017-18 by Wendell Hu.
     :license: MIT, see LICENSE for more details.
 """
 

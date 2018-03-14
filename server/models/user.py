@@ -3,7 +3,7 @@
     models.user
     ~~~~~~~~~~~
 
-    :copyright: (c) 2017 by Wendell Hu.
+    :copyright: (c) 2017-18 by Wendell Hu.
     :license: MIT, see LICENSE for more details.
 """
 
@@ -12,12 +12,14 @@ from itsdangerous import (TimedJSONWebSignatureSerializer as TSerializer,
                           BadSignature,
                           SignatureExpired)
 from werkzeug.security import generate_password_hash, check_password_hash
+
 from server.exts import db
+from server.exts.login_manager import UserMixin
 from .subscription import Subscription
 from ..util.datetime import get_current_timestamp
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     _id = db.Column(db.Integer, primary_key=True)
@@ -41,18 +43,6 @@ class User(db.Model):
     comments = db.relationship('Comment', backref='uploader', lazy='dynamic')
     subscribed_topics = db.relationship('Subscription',
                                         back_populates='subscriber')
-
-    @property
-    def is_authenticated(self):
-        return True
-
-    @property
-    def is_active(self):
-        return True
-
-    @property
-    def is_anonymous(self):
-        return False
 
     def generate_auth_token(self, expiration=None):
         if expiration is None:

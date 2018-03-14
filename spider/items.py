@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
+"""
+    items
+    ~~~~~
 
-# Define here the models for your scraped items
-#
-# See documentation in:
-# https://doc.scrapy.org/en/latest/topics/items.html
+    :copyright: (c) 2017-18 by Wendell Hu.
+    :license: MIT, see LICENSE for more details.
+"""
+
 
 import scrapy
 

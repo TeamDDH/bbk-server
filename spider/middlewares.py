@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
+"""
+    middlewares
+    ~~~~~~~~~~~
 
-# Define here the models for your spider middleware
-#
-# See documentation in:
-# https://doc.scrapy.org/en/latest/topics/spider-middleware.html
+    :copyright: (c) 2017-18 by Wendell Hu.
+    :license: MIT, see LICENSE for more details.
+"""
 
 from scrapy import signals
 from scrapy.exceptions import IgnoreRequest
@@ -109,6 +111,7 @@ class SpiderDownloaderMiddleware(object):
 
 class IgnoreDuplicatedRequestMiddleware(object):
     """This middleware could ignore requests that had been posted."""
+
     def __init__(self):
         self.checker = DuplicateChecker()
 
@@ -122,4 +125,3 @@ class IgnoreDuplicatedRequestMiddleware(object):
         else:
             self.checker.write(url)
             return None
-

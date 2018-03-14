@@ -3,7 +3,10 @@
     exts.login_manager
     ~~~~~~~~~~~~~~~~~~
 
-    :copyright: (c) 2017 by Wendell Hu.
+    A simple authentication to load user information and set it to request
+    context.
+
+    :copyright: (c) 2017-18 by Wendell Hu.
     :license: MIT, see LICENSE for more details.
 """
 
@@ -12,6 +15,9 @@ from flask import (_request_ctx_stack, has_request_context, request,
                    current_app)
 from flask_restful import abort
 from werkzeug.local import LocalProxy
+
+#: FIXME: Login manager should not know how to access user data unless
+#: it was told how. Fix that.
 from server.models.user import User
 
 #: a proxy for the current user
@@ -36,6 +42,23 @@ class AnonymousUserMixin(object):
         return '<AnonymousUser>'
 
 
+class UserMixin(object):
+    @property
+    def is_active(self):
+        return True
+
+    @property
+    def is_authenticated(self):
+        return True
+
+    @property
+    def is_anonymous(self):
+        return False
+
+    def __repr__(self):
+        return '<AuthenticatedUser>'
+
+
 class LoginManager(object):
     def __init__(self, app=None):
         if app:
@@ -50,8 +73,8 @@ class LoginManager(object):
 
     def _load_user(self):
         """Try to load user from request.json.token and set it to
-        `_request_ctx_stack.top.user`. If None, set current user as an anonymous
-        user.
+        `_request_ctx_stack.top.user`. If None, set current user as an
+        anonymous user.
         """
         ctx = _request_ctx_stack.top
         json = request.json
@@ -122,8 +145,8 @@ def anonymous_required(func):
 
 def superuser_required(func):
     """Decorator protect view functions that should only be accessed by
-    superusers.
-    NOTE: This is a very naive mechanism to check authorization.
+    superusers. This is a very naive mechanism to check authorization, and
+    currently not used in this project.
     """
 
     @wraps(func)

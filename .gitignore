@@ -4,6 +4,7 @@
 
 # Deployer
 fabfile.py
+TODO.md
 
 # Editor directories and files
 .idea/
