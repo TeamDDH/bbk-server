@@ -3,7 +3,7 @@
     config
     ~~~~~~
 
-    Configurations to the server.
+    Configurations for the web server.
 
     :copyright: (c) 2017-18 by Wendell Hu.
     :license: MIT, see LICENSE for more details.

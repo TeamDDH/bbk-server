@@ -11,10 +11,10 @@
 
 from flask import Flask
 
-from config import configs
+from .config import configs
 from .api.v1 import api_v1
-from .exts import db
-from .exts.login_manager import LoginManager
+from .exts import db, login_manager
+from .models.user import User
 
 
 def create_server(config_name):
@@ -29,9 +29,11 @@ def create_server(config_name):
 
     #: initialize extensions
     db.init_app(server)
+    login_manager.init_app(server)
 
-    #: self-writen plugins should be loaded after third-party plugins are
-    #: loaded to avoid circle import
-    login_manager = LoginManager(app=server)
+    #: register user loader for login_manager module
+    @login_manager.user_loader
+    def load(token):
+        return User.load_user_from_auth_token(token)
 
     return server

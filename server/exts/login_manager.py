@@ -16,10 +16,6 @@ from flask import (_request_ctx_stack, has_request_context, request,
 from flask_restful import abort
 from werkzeug.local import LocalProxy
 
-#: FIXME: Login manager should not know how to access user data unless
-#: it was told how. Fix that.
-from server.models.user import User
-
 #: a proxy for the current user
 #: it would be an anonymous user if no user is logged in
 current_user = LocalProxy(lambda: _get_user())
@@ -70,18 +66,26 @@ class LoginManager(object):
 
         self._anonymous_user = AnonymousUserMixin
         self._login_disabled = app.config['LOGIN_DISABLED'] or False
+        self._cb = None
+
+    def user_loader(self, cb):
+        """register a callback to loader a unique user. This callback should
+        receive a token and return a User object or None."""
+        self._cb = cb
+        return cb
 
     def _load_user(self):
         """Try to load user from request.json.token and set it to
         `_request_ctx_stack.top.user`. If None, set current user as an
         anonymous user.
         """
+
         ctx = _request_ctx_stack.top
         json = request.json
         user = self._anonymous_user()
 
-        if json and json.get('token'):
-            real_user = User.load_user_from_auth_token(json.get('token'))
+        if json and json.get('token') and this._cb is not None:
+            real_user = this._cb(json.get('token'))
             if real_user:
                 user = real_user
 
