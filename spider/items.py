@@ -12,10 +12,10 @@ import scrapy
 
 
 class ArticleItem(scrapy.Item):
-    title = scrapy.Field()  #: title of the article
-    uri = scrapy.Field()  #: link to the article
-    content = scrapy.Field()  #: the formatted content of the article
+    title = scrapy.Field()
+    uri = scrapy.Field()
+    content = scrapy.Field()
     author = scrapy.Field()
-    source = scrapy.Field()  #: the website where the article if from
+    source = scrapy.Field()
     published_at = scrapy.Field()
     crawled_at = scrapy.Field()

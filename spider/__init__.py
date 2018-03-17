@@ -10,6 +10,6 @@
 """
 
 
-#: TODO: expose a method to trigger scrabbling, required by Celery.
+#: expose a method to trigger scrabbling, required by Celery
 def start_spider():
     pass

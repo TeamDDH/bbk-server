@@ -17,9 +17,9 @@ from celery import Celery
 from spider.spiders.sina_spider import SinaSpider
 
 
-app = Celery('tasks', broker='redis://localhost:6379/0')
+master = Celery('tasks', broker='redis://localhost:6379/0')
 
 
-@app.task
+@master.task
 def run_spider():
     return x + y

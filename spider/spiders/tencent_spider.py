@@ -16,7 +16,7 @@ from spider.items import ArticleItem
 
 class TencentSpider(scrapy.Spider):
     name = 'tencent'
-    start_urls = START_POINTS['qq']
+    start_urls = [START_POINTS['qq']]
 
     def parse(self, response):
         pass

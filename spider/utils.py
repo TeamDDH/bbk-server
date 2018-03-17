@@ -13,6 +13,8 @@ from .config import SPIDER_REDIS_CONFIG
 
 
 class DuplicateChecker(object):
+    """A simple Redis based existence checker."""
+
     def __init__(self):
         self.redis = redis.Redis(host=SPIDER_REDIS_CONFIG['host'],
                                  port=SPIDER_REDIS_CONFIG['port'],

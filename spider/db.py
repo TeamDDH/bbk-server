@@ -15,7 +15,6 @@ from sqlalchemy.ext.declarative import declarative_base
 
 from .config import SPIDER_DATABASE_URI
 
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 Base = declarative_base()
 engine = create_engine(SPIDER_DATABASE_URI)
 session_generator = sessionmaker(bind=engine)
@@ -32,6 +31,8 @@ class Article(Base):
     title = Column(String(256), index=True)
     uri = Column(String(256))
     source = Column(String(128), nullable=True)
+    created_at = Column(String(128), nullable=True)
+    crawed_at = Column(String(128), nuillable=True)
 
 
 Base.metadata.create_all(bind=engine)

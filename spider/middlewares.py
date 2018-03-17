@@ -118,6 +118,7 @@ class IgnoreDuplicatedRequestMiddleware(object):
     def process_request(self, request, spider):
         url = request.url
 
+        #: TODO: use a regex to parse an url is better
         if url in START_POINTS:
             return None
         if self.checker.query(url):

@@ -28,4 +28,6 @@ class ArticlePipeline(object):
             session.add(Article(title=title, uri=uri))
             session.commit()
             session.close()
-            return item  #: still export the item so scrapy would log it
+
+        #: return the item for any other after-processing
+        return item
