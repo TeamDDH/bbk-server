@@ -10,7 +10,7 @@
 from scrapy import signals
 from scrapy.exceptions import IgnoreRequest
 
-from .config import START_POINTS
+from .config import PREVENTS
 from .utils import DuplicateChecker
 
 
@@ -118,8 +118,7 @@ class IgnoreDuplicatedRequestMiddleware(object):
     def process_request(self, request, spider):
         url = request.url
 
-        #: TODO: use a regex to parse an url is better
-        if url in START_POINTS:
+        if url in PREVENTS:
             return None
         if self.checker.query(url):
             raise IgnoreRequest('Ignore request to %s.' % url)

@@ -7,5 +7,8 @@
     :license: MIT, see LICENSE for more details.
 """
 
+from cctv_spider import CCTVSpider
+from chinadaily_spider import ChinadailySpider
 from sina_spider import SinaSpider
-from tencent_spider import TencentSpider
+from fenghuang_spider import FenghuangSpider
+from people_spider import PeopleSpider

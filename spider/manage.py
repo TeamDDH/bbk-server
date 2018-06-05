@@ -18,9 +18,6 @@ from server import create_server
 from server.exts import db
 from server.models import User, Article, Topic, Comment, Subscription
 
-from spider import start_spider
-
-
 server = create_server(os.getenv('BBK_SERVER_ENV') or 'development')
 manager = Manager(server)
 migrate = Migrate(server, db)
@@ -49,11 +46,6 @@ def fake():
     for i in range(1, 10):
         title = 'Fake Topic # %d' % i
         Topic.create_topic(title=title)
-
-
-@manager.command
-def spider():
-    start_spider()
 
 
 if __name__ == '__main__':

@@ -22,12 +22,28 @@ class ArticlePipeline(object):
             raise DropItem('Article doesn\'t have a title.')
         else:
             title = item.get('title')[0]
+            if title:
+                title = title.strip()
+
             uri = item.get('uri')[0]
+            content = item.get('content')[0]
+            if content:
+                content = content.strip()
+
+            source = item.get('source')[0]
+            crawled_at = item.get('crawled_at')[0]
+            # published_at = item.get('published_at')[0]
+            # editor = item.get('editor')[0]
+            # published_time = item.get('published_time')[0]
+
+            if title is None or title == '' or content is None or content == '':
+                raise DropItem('Article doesn\'t have valid information.')
 
             session = self.session_generator()
-            session.add(Article(title=title, uri=uri))
+            session.add(Article(title=title, uri=uri, source=source, crawled_at=crawled_at,
+                                content=content))
             session.commit()
             session.close()
 
-        #: return the item for any other after-processing
+            #: return the item for any other after-processing
         return item
