@@ -52,6 +52,7 @@ queuelib==1.4.2
 redis==2.10.6
 rope==0.10.7
 scikit-learn==0.19.1
+scipy==1.1.0
 Scrapy==1.4.0
 service-identity==17.0.0
 six==1.11.0
