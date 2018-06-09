@@ -9,7 +9,7 @@
 
 import redis
 
-from .config import SPIDER_REDIS_CONFIG
+from shared.config import SPIDER_REDIS_CONFIG
 
 
 class DuplicateChecker(object):

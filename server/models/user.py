@@ -15,8 +15,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from server.exts import db
 from server.exts.login_manager import UserMixin
-from .subscription import Subscription
-from ..util.datetime import get_current_timestamp
+from shared.util import get_current_timestamp
 
 
 class User(db.Model, UserMixin):
@@ -93,7 +92,6 @@ class User(db.Model, UserMixin):
     @classmethod
     def create_user(cls, username, password):
         """Create a user, store and return it."""
-        # TODO: support phone_number registration and login.
         new_user = cls(username=username, password=password, nickname=username)
         db.session.add(new_user)
         db.session.commit()

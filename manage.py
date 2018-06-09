@@ -2,8 +2,7 @@
 """
     manage
     ~~~~~~
-
-    Script to manage server domestically.
+    Script to manage this project.
 
     :copyright: (c) 2017-18 by Wendell Hu.
     :license: MIT, see LICENSE for more details.
@@ -12,14 +11,14 @@
 import os
 
 from flask_migrate import Migrate, MigrateCommand
-from flask_script import Manager, Server, Shell, prompt_bool
+from flask_script import Manager, Server, Shell
 
 from server import create_server
 from server.exts import db
 from server.models import User, Article, Topic, Comment, Subscription
 
+from algorithm import start_processing
 from spider import start_spider
-
 
 server = create_server(os.getenv('BBK_SERVER_ENV') or 'development')
 manager = Manager(server)
@@ -54,6 +53,11 @@ def fake():
 @manager.command
 def spider():
     start_spider()
+
+
+@manager.command
+def alg():
+    start_processing()
 
 
 if __name__ == '__main__':

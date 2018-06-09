@@ -8,14 +8,14 @@
 """
 
 from scrapy.exceptions import DropItem
-from .db import session_generator, Article
+from .db import spider_session_generator, RawArticle
 
 
 class ArticlePipeline(object):
     """Persist article items into database."""
 
     def __init__(self):
-        self.session_generator = session_generator
+        self.spider_session_generator = spider_session_generator
 
     def process_item(self, item, spider):
         if item.get('title', None) is None:
@@ -39,9 +39,9 @@ class ArticlePipeline(object):
             if title is None or title == '' or content is None or content == '':
                 raise DropItem('Article doesn\'t have valid information.')
 
-            session = self.session_generator()
-            session.add(Article(title=title, uri=uri, source=source, crawled_at=crawled_at,
-                                content=content))
+            session = self.spider_session_generator()
+            session.add(RawArticle(title=title, uri=uri, source=source,
+                                   crawled_at=crawled_at, content=content))
             session.commit()
             session.close()
 

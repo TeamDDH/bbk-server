@@ -7,7 +7,7 @@
     :license: MIT, see LICENSE for more details.
 """
 
-from ..util.datetime import get_current_timestamp
+from shared.util import get_current_timestamp
 from ..exts import db
 
 

@@ -13,14 +13,7 @@ import os
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
-#: database uri
-DEV_DB_URI = 'mysql+pymysql://root:sige1995@localhost:3306/bbk-server'
-TEST_DB_URI = None
-PROD_DB_URI = None
-
-#: secret key
-DEV_SECRET_KEY = 'secretkeyfordev'
-PROD_SECRET_KEY = os.getenv('BBK_SECRET_KEY') or None
+from shared.config import PROD_DB_URI, DEV_SECRET_KEY, DEV_DB_URI, TEST_DB_URI, PROD_SECRET_KEY
 
 
 class Config(object):

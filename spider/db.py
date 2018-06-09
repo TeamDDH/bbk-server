@@ -1,30 +1,16 @@
-# -*- coding: utf-8 -*-
-"""
-    db
-    ~~
-
-    :copyright: (c) 2017-18 by Wendell Hu.
-    :license: MIT, see LICENSE for more details.
-"""
-
-import os
-
 from sqlalchemy import Column, String, create_engine, Integer, Text
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-from .config import SPIDER_DATABASE_URI
+from shared.config import SPIDER_DATABASE_URI
 
-Base = declarative_base()
-engine = create_engine(SPIDER_DATABASE_URI)
-session_generator = sessionmaker(bind=engine)
+# create ORM to spider database
+SpiderBase = declarative_base()
+spider_engine = create_engine(SPIDER_DATABASE_URI)
+spider_session_generator = sessionmaker(bind=spider_engine)
 
 
-class Article(Base):
-    """Similar to the ORM mapping in server.models package, but these articles
-    are just for the algorithm module. Maybe the database may be switched to
-    another one.
-    """
+class RawArticle(SpiderBase):
     __tablename__ = 'articles'
 
     _id = Column(Integer(), primary_key=True)
@@ -38,4 +24,4 @@ class Article(Base):
     published_time = Column(String(128), nullable=True)
 
 
-Base.metadata.create_all(bind=engine)
+SpiderBase.metadata.create_all(bind=spider_engine)

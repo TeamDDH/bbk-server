@@ -9,15 +9,18 @@
     :license: MIT, see LICENSE for more details.
 """
 
-#: expose a method to trigger scrabbling, required by Celery
-# coding:utf-8
-
-from scrapy import cmdline
+from scrapy.crawler import CrawlerProcess
+from scrapy.utils.project import get_project_settings
+from spiders import SinaSpider, ChinadailySpider, FenghuangSpider, PeopleSpider, CCTVSpider
 
 
 def start_spider():
-    # cmdline.execute("scrapy crawl cctv".split())
-    # cmdline.execute("scrapy crawl chinadaily".split())
-    cmdline.execute("scrapy crawl fenghuang".split())
-    # cmdline.execute("scrapy crawl people".split())
-    cmdline.execute("scrapy crawl sina".split())
+    print '[INFO] running spiders'
+    process = CrawlerProcess(get_project_settings())
+    process.crawl(SinaSpider)
+    process.crawl(ChinadailySpider)
+    process.crawl(FenghuangSpider)
+    process.crawl(PeopleSpider)
+    process.crawl(CCTVSpider)
+    process.start()
+
