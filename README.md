@@ -23,6 +23,7 @@ celery 用于计划任务和调度.
 1.  `python manage.py server` 来启动 web 服务器.
 2.  `scrapy crawl XXX` 来单独启动某个爬虫启动爬虫.
 3.  `python manage.py spider` 来启动所有的爬虫.
+4.  `python manage.py alg` 来启动聚类算法.
 
 ---
 
